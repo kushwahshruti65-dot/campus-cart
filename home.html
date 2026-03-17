@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CampusKart</title>
+<link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo">
+        🛒 <span>CampusKart</span>
+    </div>
+
+    <div class="delivery">
+        <strong>Delivery in 5 minutes</strong>
+    </div>
+
+    <div class="search">
+        <input type="text" placeholder="Search for products">
+    </div>
+
+    <a href="login.html" class="login-btn">Login</a>
+
+    <!-- CART -->
+    <a href="cart.html" class="cart">
+
+        🛒 Cart (<span id="cart-count">0</span>)
+    </a>
+
+</header>
+
+
+<!-- BANNER -->
+<section class="banner">
+    <h1>food delivered in minutes ⚡</h1>
+    <p>Fresh food & medicines</p>
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="section">
+
+<h2>Shop by Category</h2>
+
+<div class="categories">
+
+    <a href="products.html" class="cat">🍎 <span>Dairy</span></a>
+    <a href="products.html" class="cat">🍟 <span>Snacks</span></a>
+    <a href="products.html" class="cat">🧃 <span>Drinks</span></a>
+    <a href="products.html" class="cat">💊 <span>Medical</span></a>
+
+</div>
+</section>
+
+
+<!-- FOOD PRODUCTS -->
+<section class="section">
+
+<h2>Food Items</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/120">
+<h4>Milk</h4>
+<p>1 L</p>
+<div class="price">₹60 <button class="add-btn">ADD</button></div>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/120">
+<h4>Chips</h4>
+<p>100 g</p>
+<div class="price">₹30 <button class="add-btn">ADD</button></div>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/120">
+<h4>Bread</h4>
+<p>400 g</p>
+<div class="price">₹40 <button class="add-btn">ADD</button></div>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/120">
+<h4>Sandwich</h4>
+<p>1 pc</p>
+<div class="price">₹50 <button class="add-btn">ADD</button></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- MEDICAL -->
+<section class="section">
+
+<h2>Medical Essentials</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/120">
+<h4>Paracetamol</h4>
+<p>10 Tablets</p>
+<div class="price">₹20 <button class="add-btn">ADD</button></div>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/120">
+<h4>ORS</h4>
+<p>Powder</p>
+<div class="price">₹40 <button class="add-btn">ADD</button></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- ADD TO CART SCRIPT -->
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+document.querySelectorAll(".add-btn").forEach(btn=>{
+    btn.addEventListener("click", function(){
+
+        let card = this.closest(".card");
+
+        let product = {
+            name: card.querySelector("h4").innerText,
+            price: card.querySelector(".price").innerText.match(/\d+/)[0]
+        };
+
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        document.getElementById("cart-count").innerText = cart.length;
+
+        alert(product.name + " added to cart 🛒");
+    });
+});
+
+// show count on reload
+document.getElementById("cart-count").innerText = cart.length;
+</script>
+</body>
+</html>
